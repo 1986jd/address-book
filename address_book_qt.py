@@ -23,7 +23,12 @@ from PyQt6.QtWidgets import (
     QSizePolicy,
 )
 
-DATA_FILE = os.path.join(os.path.dirname(__file__), "address_book.json")
+if getattr(sys, "frozen", False):
+    _BASE_DIR = os.path.dirname(sys.executable)
+else:
+    _BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+DATA_FILE = os.path.join(_BASE_DIR, "address_book.json")
 
 TRANSLATIONS = {
     "en": {

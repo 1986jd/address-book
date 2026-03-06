@@ -8,7 +8,6 @@ from PyQt6.QtGui import QStandardItem, QStandardItemModel, QFont, QColor, QIcon
 from PyQt6.QtWidgets import (
     QApplication,
     QComboBox,
-    QFormLayout,
     QGroupBox,
     QHBoxLayout,
     QHeaderView,
@@ -16,6 +15,7 @@ from PyQt6.QtWidgets import (
     QLineEdit,
     QMessageBox,
     QPushButton,
+    QSplitter,
     QTableView,
     QVBoxLayout,
     QWidget,
@@ -85,69 +85,69 @@ TRANSLATIONS = {
 
 STYLESHEET = """
 QWidget {
-    background-color: #1e1e2e;
-    color: #cdd6f4;
+    background-color: #1a1f2e;
+    color: #d4dbe8;
     font-size: 15px;
     font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
 
 /* ── Top bar ── */
 #topbar {
-    background-color: #181825;
-    border-bottom: 2px solid #313244;
+    background-color: #141820;
+    border-bottom: 2px solid #2a3045;
     padding: 6px 12px;
 }
 #appTitle {
     font-size: 22px;
     font-weight: bold;
-    color: #cba6f7;
+    color: #5cb8f0;
     letter-spacing: 1px;
 }
 #langLabel {
-    color: #a6adc8;
+    color: #8896ae;
     font-size: 13px;
 }
 
 /* ── GroupBox ── */
 QGroupBox {
-    border: 2px solid #313244;
+    border: 2px solid #2a3045;
     border-radius: 10px;
     margin-top: 14px;
     padding: 12px 10px 10px 10px;
     font-size: 13px;
-    color: #a6adc8;
+    color: #8896ae;
 }
 QGroupBox::title {
     subcontrol-origin: margin;
     subcontrol-position: top left;
     padding: 0 8px;
-    color: #89b4fa;
+    color: #5cb8f0;
     font-weight: bold;
     font-size: 13px;
 }
 
 /* ── LineEdit ── */
 QLineEdit {
-    background-color: #313244;
-    border: 2px solid #45475a;
+    background-color: #222840;
+    border: 2px solid #2a3045;
     border-radius: 8px;
     padding: 8px 12px;
-    color: #cdd6f4;
+    color: #d4dbe8;
     font-size: 15px;
-    selection-background-color: #89b4fa;
-    selection-color: #1e1e2e;
+    selection-background-color: #5cb8f0;
+    selection-color: #141820;
 }
 QLineEdit:focus {
-    border: 2px solid #89b4fa;
-    background-color: #363650;
+    border: 2px solid #5cb8f0;
+    background-color: #263050;
 }
 QLineEdit::placeholder {
-    color: #6c7086;
+    color: #4a566e;
 }
 
 /* ── Labels in form ── */
 QFormLayout QLabel {
-    color: #bac2de;
+    color: #a8b4c8;
     font-size: 14px;
     font-weight: bold;
     min-width: 130px;
@@ -155,35 +155,35 @@ QFormLayout QLabel {
 
 /* ── Table ── */
 QTableView {
-    background-color: #181825;
-    alternate-background-color: #1e1e2e;
-    border: 2px solid #313244;
+    background-color: #141820;
+    alternate-background-color: #1a1f2e;
+    border: 2px solid #2a3045;
     border-radius: 10px;
-    gridline-color: #313244;
-    selection-background-color: #89b4fa;
-    selection-color: #1e1e2e;
+    gridline-color: #2a3045;
+    selection-background-color: #2e6da4;
+    selection-color: #ffffff;
     font-size: 14px;
 }
 QTableView::item {
     padding: 6px 10px;
 }
 QTableView::item:selected {
-    background-color: #89b4fa;
-    color: #1e1e2e;
+    background-color: #2e6da4;
+    color: #ffffff;
     font-weight: bold;
 }
 QHeaderView::section {
-    background-color: #313244;
-    color: #cba6f7;
+    background-color: #222840;
+    color: #5cb8f0;
     font-weight: bold;
     font-size: 13px;
     padding: 8px 10px;
     border: none;
-    border-right: 1px solid #45475a;
-    border-bottom: 2px solid #89b4fa;
+    border-right: 1px solid #2a3045;
+    border-bottom: 2px solid #5cb8f0;
 }
 QHeaderView::section:hover {
-    background-color: #45475a;
+    background-color: #2a3045;
 }
 
 /* ── Buttons ── */
@@ -196,37 +196,37 @@ QPushButton {
     min-width: 130px;
 }
 #btnSave {
-    background-color: #a6e3a1;
-    color: #1e1e2e;
+    background-color: #3a9e6e;
+    color: #ffffff;
 }
-#btnSave:hover  { background-color: #b8f0b3; }
-#btnSave:pressed { background-color: #7fc97a; }
+#btnSave:hover  { background-color: #44b87e; }
+#btnSave:pressed { background-color: #2e7d57; }
 
 #btnDelete {
-    background-color: #f38ba8;
-    color: #1e1e2e;
+    background-color: #c0550a;
+    color: #ffffff;
 }
-#btnDelete:hover  { background-color: #f5a0ba; }
-#btnDelete:pressed { background-color: #d96b88; }
+#btnDelete:hover  { background-color: #d9620c; }
+#btnDelete:pressed { background-color: #9a4208; }
 
 #btnClear {
-    background-color: #45475a;
-    color: #cdd6f4;
+    background-color: #2a3045;
+    color: #a8b4c8;
 }
-#btnClear:hover  { background-color: #585b70; }
-#btnClear:pressed { background-color: #363650; }
+#btnClear:hover  { background-color: #344060; }
+#btnClear:pressed { background-color: #1e2535; }
 
 /* ── ComboBox ── */
 QComboBox {
-    background-color: #313244;
-    border: 2px solid #45475a;
+    background-color: #222840;
+    border: 2px solid #2a3045;
     border-radius: 8px;
     padding: 6px 12px;
-    color: #cdd6f4;
+    color: #d4dbe8;
     font-size: 14px;
     min-width: 110px;
 }
-QComboBox:hover { border-color: #89b4fa; }
+QComboBox:hover { border-color: #5cb8f0; }
 QComboBox::drop-down {
     border: none;
     width: 24px;
@@ -236,27 +236,38 @@ QComboBox::down-arrow {
     height: 10px;
 }
 QComboBox QAbstractItemView {
-    background-color: #313244;
-    border: 2px solid #89b4fa;
+    background-color: #222840;
+    border: 2px solid #5cb8f0;
     border-radius: 8px;
-    selection-background-color: #89b4fa;
-    selection-color: #1e1e2e;
+    selection-background-color: #2e6da4;
+    selection-color: #ffffff;
     padding: 4px;
 }
 
 /* ── Scrollbar ── */
 QScrollBar:vertical {
-    background: #1e1e2e;
+    background: #1a1f2e;
     width: 10px;
     border-radius: 5px;
 }
 QScrollBar::handle:vertical {
-    background: #45475a;
+    background: #2a3045;
     border-radius: 5px;
     min-height: 30px;
 }
-QScrollBar::handle:vertical:hover { background: #89b4fa; }
+QScrollBar::handle:vertical:hover { background: #5cb8f0; }
 QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0; }
+
+/* ── Splitter ── */
+QSplitter::handle {
+    background-color: #2a3045;
+    height: 6px;
+    border-radius: 3px;
+    margin: 2px 8px;
+}
+QSplitter::handle:hover {
+    background-color: #5cb8f0;
+}
 """
 
 
@@ -364,13 +375,12 @@ class AddressBook(QWidget):
         self.table.verticalHeader().setVisible(False)
         self.table.verticalHeader().setDefaultSectionSize(38)
         self.table.selectionModel().selectionChanged.connect(self._on_row_selected)
-        content_layout.addWidget(self.table)
 
         # Form
         self.form_group = QGroupBox()
-        form_layout = QFormLayout(self.form_group)
-        form_layout.setVerticalSpacing(10)
-        form_layout.setHorizontalSpacing(16)
+        form_layout = QHBoxLayout(self.form_group)
+        form_layout.setSpacing(12)
+
         self.name_edit = QLineEdit()
         self.email_edit = QLineEdit()
         self.company_edit = QLineEdit()
@@ -379,11 +389,18 @@ class AddressBook(QWidget):
         self.label_email = QLabel()
         self.label_company = QLabel()
         self.label_desc = QLabel()
-        form_layout.addRow(self.label_name, self.name_edit)
-        form_layout.addRow(self.label_email, self.email_edit)
-        form_layout.addRow(self.label_company, self.company_edit)
-        form_layout.addRow(self.label_desc, self.opis_edit)
-        content_layout.addWidget(self.form_group)
+
+        for label, field in [
+            (self.label_name, self.name_edit),
+            (self.label_email, self.email_edit),
+            (self.label_company, self.company_edit),
+            (self.label_desc, self.opis_edit),
+        ]:
+            col = QVBoxLayout()
+            col.setSpacing(4)
+            col.addWidget(label)
+            col.addWidget(field)
+            form_layout.addLayout(col)
 
         # Buttons
         btn_layout = QHBoxLayout()
@@ -404,7 +421,23 @@ class AddressBook(QWidget):
         btn_layout.addWidget(self.btn_delete)
         btn_layout.addWidget(self.btn_clear)
         btn_layout.addStretch()
-        content_layout.addLayout(btn_layout)
+
+        # Bottom panel (form + buttons)
+        bottom_widget = QWidget()
+        bottom_layout = QVBoxLayout(bottom_widget)
+        bottom_layout.setContentsMargins(0, 0, 0, 0)
+        bottom_layout.setSpacing(10)
+        bottom_layout.addWidget(self.form_group)
+        bottom_layout.addLayout(btn_layout)
+
+        # Splitter
+        splitter = QSplitter(Qt.Orientation.Vertical)
+        splitter.addWidget(self.table)
+        splitter.addWidget(bottom_widget)
+        splitter.setStretchFactor(0, 3)
+        splitter.setStretchFactor(1, 1)
+        splitter.setHandleWidth(8)
+        content_layout.addWidget(splitter)
 
         root.addWidget(content)
         self._apply_translations()
